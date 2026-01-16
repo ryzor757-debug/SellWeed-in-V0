@@ -44,14 +44,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className="font-sans antialiased min-h-screen bg-cover bg-center bg-fixed text-slate-50"
-        style={{
-          backgroundImage: `url('https://i.postimg.cc/Z5h9Hm4j/junior_louis_jean_q_EF1Cx_K1Ht4_unsplash.jpg')`,
-        }}
-      >
-        {/* Dark semi-transparent overlay for readability */}
-        <div className="fixed inset-0 pointer-events-none z-0" style={{ background: "rgba(11, 17, 32, 0.85)" }} />
+      <body className="font-sans antialiased min-h-screen text-slate-50 relative">
+        {/* Dark overlay for readability */}
+        <div className="fixed inset-0 bg-slate-950/80 z-0 pointer-events-none" />
+        {/* Content layer */}
         <div className="relative z-10">{children}</div>
         <Analytics />
       </body>
