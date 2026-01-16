@@ -125,7 +125,7 @@ function ModuleCard({ module }: { module: (typeof modules)[0] }) {
       variants={itemVariants}
       whileHover={{ y: -4, scale: 1.01 }}
       transition={{ duration: 0.3 }}
-      className={`group relative bg-[#162035] border border-[#ffffff10] rounded-2xl p-6 sm:p-8 overflow-hidden ${isLarge ? "md:col-span-2" : ""}`}
+      className={`group relative bg-slate-900/40 backdrop-blur-md border border-[#ffffff10] rounded-2xl p-6 sm:p-8 overflow-hidden ${isLarge ? "md:col-span-2" : ""}`}
       id={module.id}
     >
       {/* Glow effect on hover */}
@@ -141,25 +141,25 @@ function ModuleCard({ module }: { module: (typeof modules)[0] }) {
           </div>
           <motion.button
             whileHover={{ scale: 1.1, rotate: 45 }}
-            className="p-2 bg-[#162035] border border-[#ffffff10] rounded-lg opacity-0 group-hover:opacity-100 transition-opacity"
+            className="p-2 bg-slate-900/40 backdrop-blur-md border border-[#ffffff10] rounded-lg opacity-0 group-hover:opacity-100 transition-opacity"
           >
-            <ArrowUpRight className="h-4 w-4 text-[#F1FAEE]" />
+            <ArrowUpRight className="h-4 w-4 text-slate-50" />
           </motion.button>
         </div>
 
         {/* Title & Description */}
         <div className="mb-6">
           <p className={`text-sm font-medium mb-1 ${colors.text}`}>{module.subtitle}</p>
-          <h3 className="text-2xl sm:text-3xl font-bold text-[#F1FAEE] mb-3">{module.title}</h3>
-          <p className="text-[#8B9CB6] text-sm sm:text-base leading-relaxed">{module.description}</p>
+          <h3 className="text-2xl sm:text-3xl font-bold text-slate-50 mb-3">{module.title}</h3>
+          <p className="text-slate-400 text-sm sm:text-base leading-relaxed">{module.description}</p>
         </div>
 
         {/* Stats */}
         <div className="grid grid-cols-2 gap-4 mb-6">
           {module.stats.map((stat, i) => (
-            <div key={i} className="bg-[#162035] border border-[#ffffff10] rounded-lg p-3">
+            <div key={i} className="bg-slate-900/40 backdrop-blur-md border border-[#ffffff10] rounded-lg p-3">
               <div className={`text-xl sm:text-2xl font-bold ${colors.text}`}>{stat.value}</div>
-              <div className="text-xs text-[#8B9CB6]">{stat.label}</div>
+              <div className="text-xs text-slate-400">{stat.label}</div>
             </div>
           ))}
         </div>
@@ -169,7 +169,7 @@ function ModuleCard({ module }: { module: (typeof modules)[0] }) {
           {module.features.map((feature, i) => (
             <span
               key={i}
-              className="px-3 py-1 text-xs font-medium bg-[#162035] border border-[#ffffff10] rounded-full text-[#8B9CB6]"
+              className="px-3 py-1 text-xs font-medium bg-slate-900/40 backdrop-blur-md border border-[#ffffff10] rounded-full text-slate-400"
             >
               {feature}
             </span>
@@ -182,7 +182,7 @@ function ModuleCard({ module }: { module: (typeof modules)[0] }) {
 
 export function BentoGrid() {
   return (
-    <section className="relative py-24 sm:py-32 bg-[#0B1120]">
+    <section className="relative py-24 sm:py-32">
       {/* Background effects */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_#0D4F54_0%,_transparent_70%)] opacity-10" />
 
@@ -195,14 +195,14 @@ export function BentoGrid() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <span className="inline-flex items-center gap-2 bg-[#162035] border border-[#ffffff10] rounded-full px-4 py-1.5 text-sm font-medium text-[#26DE81] mb-4">
+          <span className="inline-flex items-center gap-2 bg-slate-900/40 backdrop-blur-md border border-[#ffffff10] rounded-full px-4 py-1.5 text-sm font-medium text-[#26DE81] mb-4">
             <Leaf className="h-4 w-4" />
             Core Modules
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#F1FAEE] mb-4 text-balance">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-50 mb-4 text-balance">
             Four Pillars of Innovation
           </h2>
-          <p className="mx-auto max-w-2xl text-[#8B9CB6] text-lg">
+          <p className="mx-auto max-w-2xl text-slate-400 text-lg">
             Integrated systems working in harmony to transform ocean agriculture into a sustainable, scalable solution
             for our planet.
           </p>
@@ -253,14 +253,14 @@ export function BentoGrid() {
             <motion.div
               key={i}
               whileHover={{ y: -2 }}
-              className="bg-[#162035] border border-[#ffffff10] rounded-xl p-4 flex items-center gap-4"
+              className="bg-slate-900/40 backdrop-blur-md border border-[#ffffff10] rounded-xl p-4 flex items-center gap-4"
             >
               <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#26DE81]/20">
                 <item.icon className="h-5 w-5 text-[#26DE81]" />
               </div>
               <div>
-                <div className="text-sm text-[#8B9CB6]">{item.label}</div>
-                <div className="text-lg font-semibold text-[#F1FAEE]">{item.value}</div>
+                <div className="text-sm text-slate-400">{item.label}</div>
+                <div className="text-lg font-semibold text-slate-50">{item.value}</div>
               </div>
             </motion.div>
           ))}

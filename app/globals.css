@@ -66,7 +66,8 @@
   --bio-green: #26de81;
   --bio-green-dim: #1a9d5c;
   --ocean-dark: #0b1120;
-  --glass: rgba(22, 32, 53, 0.6);
+  /* Updated glass to more transparent for glassmorphism with background image */
+  --glass: rgba(15, 23, 42, 0.4);
   --glass-border: rgba(255, 255, 255, 0.063);
   --card-border: rgba(255, 255, 255, 0.063);
 }
@@ -129,21 +130,21 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
-    background-color: #0b1120;
+    @apply text-foreground;
+    /* Removed solid background to allow image to show */
   }
 }
 
-/* Updated glassmorphism with backdrop-blur-md and new card borders */
+/* Updated glassmorphism with backdrop-blur-md and more transparent bg */
 .glass {
-  background: var(--glass);
+  background: rgba(15, 23, 42, 0.4);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--card-border);
 }
 
 .glass-strong {
-  background: rgba(22, 32, 53, 0.85);
+  background: rgba(15, 23, 42, 0.6);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid var(--card-border);
