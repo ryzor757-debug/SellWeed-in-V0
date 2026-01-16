@@ -6,10 +6,10 @@
 /* Oceanic Midnight palette with tab-specific accent colors */
 :root {
   /* Add background image URL as CSS variable */
-  --bg-image: url("/images/junior-louis-jean-qef1cxk1ht4-unsplash.jpg");
+  --bg-image: url("https://i.postimg.cc/Z5h9Hm4j/junior_louis_jean_q_EF1Cx_K1Ht4_unsplash.jpg");
 
   /* Core Oceanic Midnight colors */
-  --background: #0b1120;
+  --background: transparent;
   --foreground: #f1faee;
   --card: #162035;
   --card-foreground: #f1faee;
@@ -139,12 +139,16 @@
 
 /* Global background image applied to html element */
 html {
-  background-image: var(--bg-image);
+  background-image: url("https://i.postimg.cc/Z5h9Hm4j/junior_louis_jean_q_EF1Cx_K1Ht4_unsplash.jpg");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
   background-repeat: no-repeat;
   min-height: 100vh;
+}
+
+body {
+  background: transparent;
 }
 
 /* Updated glassmorphism with backdrop-blur-md and more transparent bg */

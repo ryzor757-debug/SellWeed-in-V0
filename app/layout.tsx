@@ -44,11 +44,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="font-sans antialiased min-h-screen text-slate-50 relative">
+      <body className="font-sans antialiased min-h-screen text-slate-50 relative bg-transparent">
         {/* Dark overlay for readability */}
         <div className="fixed inset-0 bg-slate-950/80 z-0 pointer-events-none" />
-        {/* Content layer */}
-        <div className="relative z-10">{children}</div>
+        {/* Content layer with bg-transparent */}
+        <div className="relative z-10 bg-transparent">{children}</div>
         <Analytics />
       </body>
     </html>
