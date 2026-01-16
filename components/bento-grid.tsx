@@ -11,7 +11,7 @@ const modules = [
     description:
       "AI-driven cultivation strategies optimized for maximum yield and environmental benefit. Real-time adaptive systems that respond to ocean conditions.",
     icon: Target,
-    accent: "primary",
+    accent: "gold", // Pale Gold for Strategy
     stats: [
       { label: "Yield Increase", value: "+47%" },
       { label: "Planning Accuracy", value: "94%" },
@@ -26,7 +26,7 @@ const modules = [
     description:
       "Interconnected farm network spanning 12 ocean regions with seamless data synchronization and collaborative research capabilities.",
     icon: Network,
-    accent: "accent",
+    accent: "blue", // Electric Blue for Network
     stats: [
       { label: "Active Nodes", value: "847" },
       { label: "Data Points/Day", value: "2.4M" },
@@ -41,7 +41,7 @@ const modules = [
     description:
       "Carbon credit marketplace and sustainable supply chain integration driving economic growth while regenerating marine ecosystems.",
     icon: TrendingUp,
-    accent: "primary",
+    accent: "teal", // Vibrant Teal for Economy
     stats: [
       { label: "Carbon Credits", value: "$2.8M" },
       { label: "Supply Partners", value: "156" },
@@ -56,7 +56,7 @@ const modules = [
     description:
       "Climate-resilient infrastructure with redundant systems ensuring continuous operation through environmental variability and extreme conditions.",
     icon: Shield,
-    accent: "accent",
+    accent: "teal", // Vibrant Teal for Resilience
     stats: [
       { label: "System Uptime", value: "99.7%" },
       { label: "Recovery Time", value: "<30s" },
@@ -88,66 +88,78 @@ const itemVariants = {
   },
 }
 
+function getAccentColors(accent: string) {
+  switch (accent) {
+    case "gold":
+      return {
+        bg: "bg-[#E9C46A]/20",
+        text: "text-[#E9C46A]",
+        glow: "glow-gold",
+        gradient: "bg-[radial-gradient(ellipse_at_top_right,_#E9C46A_0%,_transparent_50%)]",
+      }
+    case "blue":
+      return {
+        bg: "bg-[#635BFF]/20",
+        text: "text-[#635BFF]",
+        glow: "glow-blue",
+        gradient: "bg-[radial-gradient(ellipse_at_top_right,_#635BFF_0%,_transparent_50%)]",
+      }
+    case "teal":
+    default:
+      return {
+        bg: "bg-[#26DE81]/20",
+        text: "text-[#26DE81]",
+        glow: "glow-teal",
+        gradient: "bg-[radial-gradient(ellipse_at_top_right,_#26DE81_0%,_transparent_50%)]",
+      }
+  }
+}
+
 function ModuleCard({ module }: { module: (typeof modules)[0] }) {
   const Icon = module.icon
   const isLarge = module.size === "large"
+  const colors = getAccentColors(module.accent)
 
   return (
     <motion.div
       variants={itemVariants}
       whileHover={{ y: -4, scale: 1.01 }}
       transition={{ duration: 0.3 }}
-      className={`group relative glass rounded-2xl p-6 sm:p-8 overflow-hidden ${isLarge ? "md:col-span-2" : ""}`}
+      className={`group relative bg-[#162035] border border-[#ffffff10] rounded-2xl p-6 sm:p-8 overflow-hidden ${isLarge ? "md:col-span-2" : ""}`}
       id={module.id}
     >
       {/* Glow effect on hover */}
       <div
-        className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${
-          module.accent === "primary"
-            ? "bg-[radial-gradient(ellipse_at_top_right,_var(--primary)_0%,_transparent_50%)]"
-            : "bg-[radial-gradient(ellipse_at_top_right,_var(--accent)_0%,_transparent_50%)]"
-        } opacity-10`}
+        className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${colors.gradient} opacity-10`}
       />
 
       <div className="relative z-10">
         {/* Header */}
         <div className="flex items-start justify-between mb-6">
-          <div
-            className={`flex h-12 w-12 items-center justify-center rounded-xl ${
-              module.accent === "primary" ? "bg-primary/20 glow-green" : "bg-accent/20 glow-teal"
-            }`}
-          >
-            <Icon className={`h-6 w-6 ${module.accent === "primary" ? "text-primary" : "text-accent"}`} />
+          <div className={`flex h-12 w-12 items-center justify-center rounded-xl ${colors.bg} ${colors.glow}`}>
+            <Icon className={`h-6 w-6 ${colors.text}`} />
           </div>
           <motion.button
             whileHover={{ scale: 1.1, rotate: 45 }}
-            className="p-2 glass rounded-lg opacity-0 group-hover:opacity-100 transition-opacity"
+            className="p-2 bg-[#162035] border border-[#ffffff10] rounded-lg opacity-0 group-hover:opacity-100 transition-opacity"
           >
-            <ArrowUpRight className="h-4 w-4 text-foreground" />
+            <ArrowUpRight className="h-4 w-4 text-[#F1FAEE]" />
           </motion.button>
         </div>
 
         {/* Title & Description */}
         <div className="mb-6">
-          <p className={`text-sm font-medium mb-1 ${module.accent === "primary" ? "text-primary" : "text-accent"}`}>
-            {module.subtitle}
-          </p>
-          <h3 className="text-2xl sm:text-3xl font-bold text-foreground mb-3">{module.title}</h3>
-          <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">{module.description}</p>
+          <p className={`text-sm font-medium mb-1 ${colors.text}`}>{module.subtitle}</p>
+          <h3 className="text-2xl sm:text-3xl font-bold text-[#F1FAEE] mb-3">{module.title}</h3>
+          <p className="text-[#8B9CB6] text-sm sm:text-base leading-relaxed">{module.description}</p>
         </div>
 
         {/* Stats */}
         <div className="grid grid-cols-2 gap-4 mb-6">
           {module.stats.map((stat, i) => (
-            <div key={i} className="glass rounded-lg p-3">
-              <div
-                className={`text-xl sm:text-2xl font-bold ${
-                  module.accent === "primary" ? "text-primary text-glow-green" : "text-accent"
-                }`}
-              >
-                {stat.value}
-              </div>
-              <div className="text-xs text-muted-foreground">{stat.label}</div>
+            <div key={i} className="bg-[#162035] border border-[#ffffff10] rounded-lg p-3">
+              <div className={`text-xl sm:text-2xl font-bold ${colors.text}`}>{stat.value}</div>
+              <div className="text-xs text-[#8B9CB6]">{stat.label}</div>
             </div>
           ))}
         </div>
@@ -155,7 +167,10 @@ function ModuleCard({ module }: { module: (typeof modules)[0] }) {
         {/* Features */}
         <div className="flex flex-wrap gap-2">
           {module.features.map((feature, i) => (
-            <span key={i} className="px-3 py-1 text-xs font-medium glass rounded-full text-muted-foreground">
+            <span
+              key={i}
+              className="px-3 py-1 text-xs font-medium bg-[#162035] border border-[#ffffff10] rounded-full text-[#8B9CB6]"
+            >
               {feature}
             </span>
           ))}
@@ -167,9 +182,9 @@ function ModuleCard({ module }: { module: (typeof modules)[0] }) {
 
 export function BentoGrid() {
   return (
-    <section className="relative py-24 sm:py-32">
+    <section className="relative py-24 sm:py-32 bg-[#0B1120]">
       {/* Background effects */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--teal-deep)_0%,_transparent_70%)] opacity-10" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_#0D4F54_0%,_transparent_70%)] opacity-10" />
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -180,14 +195,14 @@ export function BentoGrid() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <span className="inline-flex items-center gap-2 glass rounded-full px-4 py-1.5 text-sm font-medium text-primary mb-4">
+          <span className="inline-flex items-center gap-2 bg-[#162035] border border-[#ffffff10] rounded-full px-4 py-1.5 text-sm font-medium text-[#26DE81] mb-4">
             <Leaf className="h-4 w-4" />
             Core Modules
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4 text-balance">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#F1FAEE] mb-4 text-balance">
             Four Pillars of Innovation
           </h2>
-          <p className="mx-auto max-w-2xl text-muted-foreground text-lg">
+          <p className="mx-auto max-w-2xl text-[#8B9CB6] text-lg">
             Integrated systems working in harmony to transform ocean agriculture into a sustainable, scalable solution
             for our planet.
           </p>
@@ -235,13 +250,17 @@ export function BentoGrid() {
             { icon: BarChart3, label: "Data Points", value: "2.4M Daily" },
             { icon: Zap, label: "Response Time", value: "<100ms" },
           ].map((item, i) => (
-            <motion.div key={i} whileHover={{ y: -2 }} className="glass rounded-xl p-4 flex items-center gap-4">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/20">
-                <item.icon className="h-5 w-5 text-primary" />
+            <motion.div
+              key={i}
+              whileHover={{ y: -2 }}
+              className="bg-[#162035] border border-[#ffffff10] rounded-xl p-4 flex items-center gap-4"
+            >
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#26DE81]/20">
+                <item.icon className="h-5 w-5 text-[#26DE81]" />
               </div>
               <div>
-                <div className="text-sm text-muted-foreground">{item.label}</div>
-                <div className="text-lg font-semibold text-foreground">{item.value}</div>
+                <div className="text-sm text-[#8B9CB6]">{item.label}</div>
+                <div className="text-lg font-semibold text-[#F1FAEE]">{item.value}</div>
               </div>
             </motion.div>
           ))}

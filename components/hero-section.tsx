@@ -5,18 +5,18 @@ import { ArrowDown, Play } from "lucide-react"
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0B1120]">
       {/* Background gradient effects */}
-      <div className="absolute inset-0 bg-ocean-dark" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--teal-deep)_0%,_transparent_50%)] opacity-30" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_var(--bio-green-dim)_0%,_transparent_40%)] opacity-20" />
+      <div className="absolute inset-0 bg-[#0B1120]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_#0D4F54_0%,_transparent_50%)] opacity-30" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_#1A9D5C_0%,_transparent_40%)] opacity-20" />
 
       {/* Animated particles/waves effect */}
       <div className="absolute inset-0 overflow-hidden">
         {[...Array(5)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute h-px w-full bg-gradient-to-r from-transparent via-primary/20 to-transparent"
+            className="absolute h-px w-full bg-gradient-to-r from-transparent via-[#26DE81]/20 to-transparent"
             style={{ top: `${20 + i * 15}%` }}
             animate={{
               x: ["-100%", "100%"],
@@ -40,8 +40,8 @@ export function HeroSection() {
             transition={{ duration: 0.6 }}
             className="mb-6"
           >
-            <span className="inline-flex items-center gap-2 glass rounded-full px-4 py-1.5 text-sm font-medium text-primary">
-              <span className="h-1.5 w-1.5 rounded-full bg-primary pulse-live" />
+            <span className="inline-flex items-center gap-2 bg-[#162035] border border-[#ffffff10] rounded-full px-4 py-1.5 text-sm font-medium text-[#26DE81]">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#26DE81] pulse-live" />
               Innovation Hub
             </span>
           </motion.div>
@@ -50,16 +50,16 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-foreground mb-6 text-balance"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-[#F1FAEE] mb-6 text-balance"
           >
-            Cultivating the <span className="text-primary text-glow-green">Ocean{"'"}s Future</span>
+            Cultivating the <span className="text-[#26DE81] text-glow-green">Ocean{"'"}s Future</span>
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="mx-auto max-w-2xl text-lg sm:text-xl text-muted-foreground mb-10 text-pretty"
+            className="mx-auto max-w-2xl text-lg sm:text-xl text-[#8B9CB6] mb-10 text-pretty"
           >
             Project SellWeed pioneers sustainable seaweed farming at scale, transforming ocean agriculture into a
             cornerstone of the climate-positive economy.
@@ -74,7 +74,7 @@ export function HeroSection() {
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-base font-medium text-primary-foreground transition-all hover:bg-primary/90 glow-green"
+              className="flex items-center gap-2 rounded-full bg-[#26DE81] px-6 py-3 text-base font-medium text-[#0B1120] transition-all hover:bg-[#26DE81]/90 glow-teal"
             >
               Explore Modules
               <ArrowDown className="h-4 w-4" />
@@ -82,7 +82,7 @@ export function HeroSection() {
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="flex items-center gap-2 glass rounded-full px-6 py-3 text-base font-medium text-foreground transition-all hover:bg-secondary/50"
+              className="flex items-center gap-2 bg-[#162035] border border-[#ffffff10] rounded-full px-6 py-3 text-base font-medium text-[#F1FAEE] transition-all hover:bg-[#1A2538]"
             >
               <Play className="h-4 w-4" />
               Watch Overview
@@ -103,9 +103,9 @@ export function HeroSection() {
             { value: "24/7", label: "Live Monitoring" },
             { value: "98%", label: "Uptime" },
           ].map((stat, i) => (
-            <div key={i} className="glass rounded-xl p-4 text-center">
-              <div className="text-2xl sm:text-3xl font-bold text-primary text-glow-green">{stat.value}</div>
-              <div className="text-sm text-muted-foreground mt-1">{stat.label}</div>
+            <div key={i} className="bg-[#162035] border border-[#ffffff10] rounded-xl p-4 text-center">
+              <div className="text-2xl sm:text-3xl font-bold text-[#26DE81] text-glow-green">{stat.value}</div>
+              <div className="text-sm text-[#8B9CB6] mt-1">{stat.label}</div>
             </div>
           ))}
         </motion.div>
@@ -117,7 +117,7 @@ export function HeroSection() {
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
       >
-        <ArrowDown className="h-6 w-6 text-muted-foreground" />
+        <ArrowDown className="h-6 w-6 text-[#8B9CB6]" />
       </motion.div>
     </section>
   )

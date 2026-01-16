@@ -137,22 +137,27 @@ export function Exchange() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h3 className="text-xl font-semibold text-foreground">B2B Exchange</h3>
-          <p className="text-sm text-muted-foreground mt-1">Trade Blue Credits and seaweed biomass assets</p>
+          <h3 className="text-xl font-semibold text-[#F1FAEE]">B2B Exchange</h3>
+          <p className="text-sm text-[#8B9CB6] mt-1">Trade Blue Credits and seaweed biomass assets</p>
         </div>
 
         <div className="flex items-center gap-3">
-          <Button variant="outline" size="sm" onClick={handleRefresh} className="gap-2 border-border/50 bg-transparent">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={handleRefresh}
+            className="gap-2 border-[#ffffff10] bg-transparent text-[#8B9CB6] hover:text-[#F1FAEE]"
+          >
             <RefreshCw className={`h-4 w-4 ${isRefreshing ? "animate-spin" : ""}`} />
             Refresh
           </Button>
-          <div className="flex gap-1 glass rounded-lg p-1">
+          <div className="flex gap-1 bg-[#162035] border border-[#ffffff10] rounded-lg p-1">
             {(["price", "change", "volume"] as const).map((type) => (
               <button
                 key={type}
                 onClick={() => setSortBy(type)}
                 className={`px-3 py-1.5 rounded-md text-sm font-medium transition-all flex items-center gap-1 ${
-                  sortBy === type ? "bg-primary/20 text-primary" : "text-muted-foreground hover:text-foreground"
+                  sortBy === type ? "bg-[#26DE81]/20 text-[#26DE81]" : "text-[#8B9CB6] hover:text-[#F1FAEE]"
                 }`}
               >
                 <ArrowUpDown className="h-3 w-3" />
@@ -163,76 +168,80 @@ export function Exchange() {
         </div>
       </div>
 
-      {/* Market Summary */}
+      {/* Market Summary - Updated card colors */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-        <motion.div className="glass rounded-xl p-4" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
-          <div className="flex items-center gap-2 text-muted-foreground text-sm mb-1">
+        <motion.div
+          className="bg-[#162035] border border-[#ffffff10] rounded-xl p-4"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+        >
+          <div className="flex items-center gap-2 text-[#8B9CB6] text-sm mb-1">
             <Coins className="h-4 w-4" />
             Credit Index
           </div>
-          <div className="text-2xl font-bold text-primary">$32.15</div>
-          <div className="text-xs text-accent flex items-center gap-1">
+          <div className="text-2xl font-bold text-[#26DE81]">$32.15</div>
+          <div className="text-xs text-[#26DE81] flex items-center gap-1">
             <TrendingUp className="h-3 w-3" />
             +2.4%
           </div>
         </motion.div>
 
         <motion.div
-          className="glass rounded-xl p-4"
+          className="bg-[#162035] border border-[#ffffff10] rounded-xl p-4"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.05 }}
         >
-          <div className="flex items-center gap-2 text-muted-foreground text-sm mb-1">
+          <div className="flex items-center gap-2 text-[#8B9CB6] text-sm mb-1">
             <Leaf className="h-4 w-4" />
             Biomass Index
           </div>
-          <div className="text-2xl font-bold text-accent">$10.40</div>
-          <div className="text-xs text-destructive flex items-center gap-1">
+          <div className="text-2xl font-bold text-[#635BFF]">$10.40</div>
+          <div className="text-xs text-[#FF6B6B] flex items-center gap-1">
             <TrendingDown className="h-3 w-3" />
             -0.6%
           </div>
         </motion.div>
 
         <motion.div
-          className="glass rounded-xl p-4"
+          className="bg-[#162035] border border-[#ffffff10] rounded-xl p-4"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
         >
-          <div className="text-muted-foreground text-sm mb-1">24h Volume</div>
-          <div className="text-2xl font-bold text-foreground">$2.4M</div>
-          <div className="text-xs text-muted-foreground">+18% from yesterday</div>
+          <div className="text-[#8B9CB6] text-sm mb-1">24h Volume</div>
+          <div className="text-2xl font-bold text-[#F1FAEE]">$2.4M</div>
+          <div className="text-xs text-[#8B9CB6]">+18% from yesterday</div>
         </motion.div>
 
         <motion.div
-          className="glass rounded-xl p-4"
+          className="bg-[#162035] border border-[#ffffff10] rounded-xl p-4"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.15 }}
         >
-          <div className="text-muted-foreground text-sm mb-1">Active Trades</div>
-          <div className="text-2xl font-bold text-foreground">847</div>
-          <div className="text-xs text-muted-foreground">Across 12 partners</div>
+          <div className="text-[#8B9CB6] text-sm mb-1">Active Trades</div>
+          <div className="text-2xl font-bold text-[#F1FAEE]">847</div>
+          <div className="text-xs text-[#8B9CB6]">Across 12 partners</div>
         </motion.div>
       </div>
 
-      {/* Asset Table */}
+      {/* Asset Table - Updated colors */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.2 }}
-        className="glass rounded-xl overflow-hidden"
+        className="bg-[#162035] border border-[#ffffff10] rounded-xl overflow-hidden"
       >
         <Table>
           <TableHeader>
-            <TableRow className="border-border/30 hover:bg-transparent">
-              <TableHead className="text-muted-foreground">Asset</TableHead>
-              <TableHead className="text-muted-foreground text-right">Price</TableHead>
-              <TableHead className="text-muted-foreground text-right hidden sm:table-cell">24h Change</TableHead>
-              <TableHead className="text-muted-foreground text-right hidden md:table-cell">Volume</TableHead>
-              <TableHead className="text-muted-foreground text-right hidden lg:table-cell">Available</TableHead>
-              <TableHead className="text-muted-foreground text-right">Action</TableHead>
+            <TableRow className="border-[#ffffff10] hover:bg-transparent">
+              <TableHead className="text-[#8B9CB6]">Asset</TableHead>
+              <TableHead className="text-[#8B9CB6] text-right">Price</TableHead>
+              <TableHead className="text-[#8B9CB6] text-right hidden sm:table-cell">24h Change</TableHead>
+              <TableHead className="text-[#8B9CB6] text-right hidden md:table-cell">Volume</TableHead>
+              <TableHead className="text-[#8B9CB6] text-right hidden lg:table-cell">Available</TableHead>
+              <TableHead className="text-[#8B9CB6] text-right">Action</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -242,46 +251,42 @@ export function Exchange() {
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: index * 0.05 }}
-                className="border-border/30 hover:bg-card/50 transition-colors"
+                className="border-[#ffffff10] hover:bg-[#1A2538] transition-colors"
               >
                 <TableCell>
                   <div className="flex items-center gap-3">
                     <div
                       className={`flex h-10 w-10 items-center justify-center rounded-lg ${
-                        asset.type === "credit" ? "bg-primary/20" : "bg-accent/20"
+                        asset.type === "credit" ? "bg-[#26DE81]/20" : "bg-[#635BFF]/20"
                       }`}
                     >
                       {asset.type === "credit" ? (
-                        <Coins className="h-5 w-5 text-primary" />
+                        <Coins className="h-5 w-5 text-[#26DE81]" />
                       ) : (
-                        <Leaf className="h-5 w-5 text-accent" />
+                        <Leaf className="h-5 w-5 text-[#635BFF]" />
                       )}
                     </div>
                     <div>
                       <div className="flex items-center gap-2">
-                        <span className="font-medium text-foreground">{asset.name}</span>
+                        <span className="font-medium text-[#F1FAEE]">{asset.name}</span>
                         {asset.verified && (
-                          <Badge className="bg-primary/20 text-primary border-primary/30 text-[10px] px-1.5">
+                          <Badge className="bg-[#26DE81]/20 text-[#26DE81] border-[#26DE81]/30 text-[10px] px-1.5">
                             Verified
                           </Badge>
                         )}
                       </div>
-                      <span className="text-xs text-muted-foreground">{asset.symbol}</span>
+                      <span className="text-xs text-[#8B9CB6]">{asset.symbol}</span>
                     </div>
                   </div>
                 </TableCell>
                 <TableCell className="text-right">
-                  <div className="font-semibold text-foreground">${asset.price.toFixed(2)}</div>
-                  <div className="text-xs text-muted-foreground">{asset.priceUnit}</div>
+                  <div className="font-semibold text-[#F1FAEE]">${asset.price.toFixed(2)}</div>
+                  <div className="text-xs text-[#8B9CB6]">{asset.priceUnit}</div>
                 </TableCell>
                 <TableCell className="text-right hidden sm:table-cell">
                   <div
                     className={`flex items-center justify-end gap-1 font-medium ${
-                      asset.change24h > 0
-                        ? "text-accent"
-                        : asset.change24h < 0
-                          ? "text-destructive"
-                          : "text-muted-foreground"
+                      asset.change24h > 0 ? "text-[#26DE81]" : asset.change24h < 0 ? "text-[#FF6B6B]" : "text-[#8B9CB6]"
                     }`}
                   >
                     {asset.change24h > 0 ? (
@@ -293,15 +298,12 @@ export function Exchange() {
                     {asset.change24h.toFixed(1)}%
                   </div>
                 </TableCell>
-                <TableCell className="text-right hidden md:table-cell text-muted-foreground">{asset.volume}</TableCell>
-                <TableCell className="text-right hidden lg:table-cell text-muted-foreground">
-                  {asset.available}
-                </TableCell>
+                <TableCell className="text-right hidden md:table-cell text-[#8B9CB6]">{asset.volume}</TableCell>
+                <TableCell className="text-right hidden lg:table-cell text-[#8B9CB6]">{asset.available}</TableCell>
                 <TableCell className="text-right">
                   <Button
                     size="sm"
-                    variant="outline"
-                    className="border-primary/30 text-primary hover:bg-primary/20 gap-1 bg-transparent"
+                    className="bg-[#26DE81] hover:bg-[#26DE81]/90 text-[#0B1120] border-0 gap-1 font-medium"
                   >
                     Trade
                     <ExternalLink className="h-3 w-3" />
@@ -314,7 +316,7 @@ export function Exchange() {
       </motion.div>
 
       {/* Disclaimer */}
-      <p className="text-xs text-muted-foreground text-center">
+      <p className="text-xs text-[#8B9CB6] text-center">
         Prices update every 5 seconds. All trades are settled on-chain via SellWeed smart contracts.
       </p>
     </div>

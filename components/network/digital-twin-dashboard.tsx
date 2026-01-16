@@ -3,8 +3,9 @@
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { Thermometer, Droplets, Activity, Waves, Wind, TrendingUp, TrendingDown } from "lucide-react"
-import { LineChart, Line, XAxis, YAxis, ResponsiveContainer, Area, AreaChart } from "recharts"
+import { XAxis, YAxis, ResponsiveContainer, Area, AreaChart } from "recharts"
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart"
+import { LineChart, Line } from "recharts"
 
 // Simulated real-time data generator
 function generateDataPoint(base: number, variance: number) {
@@ -27,7 +28,7 @@ const metrics = [
     base: 26.5,
     variance: 2,
     optimal: { min: 24, max: 28 },
-    color: "#22ff88",
+    color: "#635BFF", // Electric Blue
   },
   {
     id: "ph",
@@ -37,7 +38,7 @@ const metrics = [
     base: 8.1,
     variance: 0.3,
     optimal: { min: 7.8, max: 8.4 },
-    color: "#1aaa88",
+    color: "#635BFF",
   },
   {
     id: "salinity",
@@ -47,7 +48,7 @@ const metrics = [
     base: 35,
     variance: 2,
     optimal: { min: 33, max: 37 },
-    color: "#22ddaa",
+    color: "#635BFF",
   },
   {
     id: "dissolved_o2",
@@ -57,7 +58,7 @@ const metrics = [
     base: 7.5,
     variance: 1,
     optimal: { min: 6, max: 9 },
-    color: "#44ffbb",
+    color: "#635BFF",
   },
 ]
 
@@ -80,22 +81,22 @@ function MetricCard({
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="glass rounded-xl p-4 flex flex-col"
+      className="bg-[#162035] border border-[#ffffff10] rounded-xl p-4 flex flex-col"
     >
       <div className="flex items-start justify-between mb-3">
         <div className="flex items-center gap-2">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/20">
-            <Icon className="h-4 w-4 text-primary" />
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#635BFF]/20">
+            <Icon className="h-4 w-4 text-[#635BFF]" />
           </div>
           <div>
-            <div className="text-xs text-muted-foreground">{metric.label}</div>
+            <div className="text-xs text-[#8B9CB6]">{metric.label}</div>
             <div className="flex items-baseline gap-1">
-              <span className="text-xl font-bold text-foreground">{value.toFixed(1)}</span>
-              <span className="text-xs text-muted-foreground">{metric.unit}</span>
+              <span className="text-xl font-bold text-[#F1FAEE]">{value.toFixed(1)}</span>
+              <span className="text-xs text-[#8B9CB6]">{metric.unit}</span>
             </div>
           </div>
         </div>
-        <div className={`flex items-center gap-1 text-xs ${isOptimal ? "text-primary" : "text-orange-400"}`}>
+        <div className={`flex items-center gap-1 text-xs ${isOptimal ? "text-[#635BFF]" : "text-orange-400"}`}>
           <TrendIcon className="h-3 w-3" />
           {isOptimal ? "Optimal" : "Monitor"}
         </div>
@@ -159,24 +160,24 @@ export function DigitalTwinDashboard() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h3 className="text-lg font-semibold text-foreground">Digital Twin Dashboard</h3>
-          <p className="text-sm text-muted-foreground">Real-time environmental monitoring</p>
+          <h3 className="text-lg font-semibold text-[#F1FAEE]">Digital Twin Dashboard</h3>
+          <p className="text-sm text-[#8B9CB6]">Real-time environmental monitoring</p>
         </div>
-        <div className="flex items-center gap-2 glass rounded-full px-3 py-1.5">
-          <span className="h-2 w-2 rounded-full bg-primary pulse-live" />
-          <span className="text-xs text-muted-foreground">Live Data</span>
+        <div className="flex items-center gap-2 bg-[#162035] border border-[#ffffff10] rounded-full px-3 py-1.5">
+          <span className="h-2 w-2 rounded-full bg-[#635BFF] pulse-live" />
+          <span className="text-xs text-[#8B9CB6]">Live Data</span>
         </div>
       </div>
 
-      {/* Location selector */}
+      {/* Location selector - Electric Blue active state */}
       <div className="flex gap-2">
         {["St. Martin's Island", "Cox's Bazar"].map((loc, i) => (
           <button
             key={loc}
             className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
               i === 0
-                ? "bg-primary/20 text-primary border border-primary/30"
-                : "glass text-muted-foreground hover:text-foreground"
+                ? "bg-[#635BFF]/20 text-[#635BFF] border border-[#635BFF]/30"
+                : "bg-[#162035] border border-[#ffffff10] text-[#8B9CB6] hover:text-[#F1FAEE]"
             }`}
           >
             {loc}
@@ -192,21 +193,21 @@ export function DigitalTwinDashboard() {
       </div>
 
       {/* Combined chart */}
-      <div className="glass rounded-xl p-4">
-        <div className="text-sm font-medium text-foreground mb-4">24-Hour Trend Analysis</div>
+      <div className="bg-[#162035] border border-[#ffffff10] rounded-xl p-4">
+        <div className="text-sm font-medium text-[#F1FAEE] mb-4">24-Hour Trend Analysis</div>
         <ChartContainer
           config={{
-            temperature: { label: "Temperature", color: "#22ff88" },
-            ph: { label: "pH Level", color: "#1aaa88" },
+            temperature: { label: "Temperature", color: "#635BFF" },
+            ph: { label: "pH Level", color: "#635BFF" },
           }}
           className="h-[200px]"
         >
           <ResponsiveContainer width="100%" height="100%">
             <LineChart data={currentValues[0].data}>
-              <XAxis dataKey="time" stroke="#4a5568" fontSize={10} tickLine={false} axisLine={false} />
-              <YAxis stroke="#4a5568" fontSize={10} tickLine={false} axisLine={false} />
+              <XAxis dataKey="time" stroke="#8B9CB6" fontSize={10} tickLine={false} axisLine={false} />
+              <YAxis stroke="#8B9CB6" fontSize={10} tickLine={false} axisLine={false} />
               <ChartTooltip content={<ChartTooltipContent />} />
-              <Line type="monotone" dataKey="value" stroke="#22ff88" strokeWidth={2} dot={false} name="Temperature" />
+              <Line type="monotone" dataKey="value" stroke="#635BFF" strokeWidth={2} dot={false} name="Temperature" />
             </LineChart>
           </ResponsiveContainer>
         </ChartContainer>

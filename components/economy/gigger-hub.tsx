@@ -22,11 +22,11 @@ interface Gig {
   urgent?: boolean
 }
 
-const gigs: Gig[] = [
+const gigs = [
   {
     id: "1",
     title: "Kelp Line Seeding",
-    type: "seeding",
+    type: "seeding" as const,
     location: "St. Martin's Island, Zone A",
     date: "Jan 20, 2026",
     duration: "6 hours",
@@ -39,7 +39,7 @@ const gigs: Gig[] = [
   {
     id: "2",
     title: "Gracilaria Harvest Cycle",
-    type: "harvesting",
+    type: "harvesting" as const,
     location: "Cox's Bazar, Sector 3",
     date: "Jan 22, 2026",
     duration: "8 hours",
@@ -51,7 +51,7 @@ const gigs: Gig[] = [
   {
     id: "3",
     title: "Nursery Rope Preparation",
-    type: "seeding",
+    type: "seeding" as const,
     location: "St. Martin's Island, Zone B",
     date: "Jan 24, 2026",
     duration: "4 hours",
@@ -63,7 +63,7 @@ const gigs: Gig[] = [
   {
     id: "4",
     title: "Bulk Biomass Collection",
-    type: "harvesting",
+    type: "harvesting" as const,
     location: "Cox's Bazar, Sector 1",
     date: "Jan 25, 2026",
     duration: "10 hours",
@@ -76,7 +76,7 @@ const gigs: Gig[] = [
   {
     id: "5",
     title: "Spore Inoculation",
-    type: "seeding",
+    type: "seeding" as const,
     location: "Cox's Bazar, Sector 2",
     date: "Jan 27, 2026",
     duration: "5 hours",
@@ -88,7 +88,7 @@ const gigs: Gig[] = [
 ]
 
 export function GiggerHub() {
-  const [filter, setFilter] = useState<"all" | GigType>("all")
+  const [filter, setFilter] = useState<"all" | "seeding" | "harvesting">("all")
   const [appliedGigs, setAppliedGigs] = useState<string[]>([])
 
   const filteredGigs = gigs.filter((gig) => (filter === "all" ? true : gig.type === filter))
@@ -102,20 +102,20 @@ export function GiggerHub() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h3 className="text-xl font-semibold text-foreground">Available Gigs</h3>
-          <p className="text-sm text-muted-foreground mt-1">{filteredGigs.length} opportunities for coastal workers</p>
+          <h3 className="text-xl font-semibold text-[#F1FAEE]">Available Gigs</h3>
+          <p className="text-sm text-[#8B9CB6] mt-1">{filteredGigs.length} opportunities for coastal workers</p>
         </div>
 
         {/* Filter */}
         <div className="flex items-center gap-2">
-          <Filter className="h-4 w-4 text-muted-foreground" />
-          <div className="flex gap-1 glass rounded-lg p-1">
+          <Filter className="h-4 w-4 text-[#8B9CB6]" />
+          <div className="flex gap-1 bg-[#162035] border border-[#ffffff10] rounded-lg p-1">
             {(["all", "seeding", "harvesting"] as const).map((type) => (
               <button
                 key={type}
                 onClick={() => setFilter(type)}
                 className={`px-3 py-1.5 rounded-md text-sm font-medium transition-all ${
-                  filter === type ? "bg-primary/20 text-primary" : "text-muted-foreground hover:text-foreground"
+                  filter === type ? "bg-[#26DE81]/20 text-[#26DE81]" : "text-[#8B9CB6] hover:text-[#F1FAEE]"
                 }`}
               >
                 {type.charAt(0).toUpperCase() + type.slice(1)}
@@ -135,14 +135,14 @@ export function GiggerHub() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.3, delay: index * 0.05 }}
-              className="glass rounded-xl p-4 sm:p-5 hover:bg-card/60 transition-colors group"
+              className="bg-[#162035] border border-[#ffffff10] rounded-xl p-4 sm:p-5 hover:bg-[#1A2538] transition-colors group"
             >
               <div className="flex flex-col lg:flex-row lg:items-center gap-4">
                 {/* Icon and Title */}
                 <div className="flex items-start gap-4 flex-1">
                   <div
                     className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl ${
-                      gig.type === "seeding" ? "bg-primary/20 text-primary" : "bg-accent/20 text-accent"
+                      gig.type === "seeding" ? "bg-[#26DE81]/20 text-[#26DE81]" : "bg-[#635BFF]/20 text-[#635BFF]"
                     }`}
                   >
                     {gig.type === "seeding" ? <Sprout className="h-6 w-6" /> : <Scissors className="h-6 w-6" />}
@@ -150,15 +150,13 @@ export function GiggerHub() {
 
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 flex-wrap">
-                      <h4 className="font-semibold text-foreground">{gig.title}</h4>
+                      <h4 className="font-semibold text-[#F1FAEE]">{gig.title}</h4>
                       {gig.urgent && (
-                        <Badge className="bg-destructive/20 text-destructive border-destructive/30 text-xs">
-                          Urgent
-                        </Badge>
+                        <Badge className="bg-[#FF6B6B]/20 text-[#FF6B6B] border-[#FF6B6B]/30 text-xs">Urgent</Badge>
                       )}
                     </div>
 
-                    <div className="flex items-center gap-4 mt-2 text-sm text-muted-foreground flex-wrap">
+                    <div className="flex items-center gap-4 mt-2 text-sm text-[#8B9CB6] flex-wrap">
                       <span className="flex items-center gap-1">
                         <MapPin className="h-3.5 w-3.5" />
                         {gig.location}
@@ -174,7 +172,7 @@ export function GiggerHub() {
                       {gig.skills.map((skill) => (
                         <span
                           key={skill}
-                          className="text-xs px-2 py-0.5 rounded-full bg-muted/50 text-muted-foreground"
+                          className="text-xs px-2 py-0.5 rounded-full bg-[#1A2538] border border-[#ffffff10] text-[#8B9CB6]"
                         >
                           {skill}
                         </span>
@@ -184,20 +182,20 @@ export function GiggerHub() {
                 </div>
 
                 {/* Stats and Action */}
-                <div className="flex items-center gap-6 lg:gap-8 pt-3 lg:pt-0 border-t lg:border-t-0 lg:border-l border-border/30 lg:pl-6">
+                <div className="flex items-center gap-6 lg:gap-8 pt-3 lg:pt-0 border-t lg:border-t-0 lg:border-l border-[#ffffff10] lg:pl-6">
                   <div className="flex flex-col items-center">
-                    <span className="text-lg font-bold text-primary">{gig.pay}</span>
-                    <span className="text-xs text-muted-foreground">{gig.duration}</span>
+                    <span className="text-lg font-bold text-[#26DE81]">{gig.pay}</span>
+                    <span className="text-xs text-[#8B9CB6]">{gig.duration}</span>
                   </div>
 
                   <div className="flex flex-col items-center">
                     <div className="flex items-center gap-1">
-                      <Users className="h-4 w-4 text-muted-foreground" />
-                      <span className="font-semibold text-foreground">
+                      <Users className="h-4 w-4 text-[#8B9CB6]" />
+                      <span className="font-semibold text-[#F1FAEE]">
                         {gig.slotsAvailable}/{gig.slots}
                       </span>
                     </div>
-                    <span className="text-xs text-muted-foreground">slots</span>
+                    <span className="text-xs text-[#8B9CB6]">slots</span>
                   </div>
 
                   {appliedGigs.includes(gig.id) ? (
@@ -205,7 +203,7 @@ export function GiggerHub() {
                       variant="outline"
                       size="sm"
                       disabled
-                      className="border-primary/30 text-primary gap-1 bg-transparent"
+                      className="border-[#26DE81]/30 text-[#26DE81] gap-1 bg-transparent"
                     >
                       <CheckCircle2 className="h-4 w-4" />
                       Applied
@@ -214,7 +212,7 @@ export function GiggerHub() {
                     <Button
                       size="sm"
                       onClick={() => handleApply(gig.id)}
-                      className="bg-primary/20 hover:bg-primary/30 text-primary border border-primary/30 gap-1 group-hover:bg-primary group-hover:text-primary-foreground transition-all"
+                      className="bg-[#26DE81] hover:bg-[#26DE81]/90 text-[#0B1120] border-0 gap-1 font-medium"
                     >
                       Apply
                       <ChevronRight className="h-4 w-4" />
@@ -232,23 +230,23 @@ export function GiggerHub() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.3 }}
-        className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 border-t border-border/30"
+        className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 border-t border-[#ffffff10]"
       >
         <div className="text-center">
-          <div className="text-2xl font-bold text-primary">৳14.3K</div>
-          <div className="text-xs text-muted-foreground">Total Earnings Available</div>
+          <div className="text-2xl font-bold text-[#26DE81]">৳14.3K</div>
+          <div className="text-xs text-[#8B9CB6]">Total Earnings Available</div>
         </div>
         <div className="text-center">
-          <div className="text-2xl font-bold text-accent">24</div>
-          <div className="text-xs text-muted-foreground">Open Slots</div>
+          <div className="text-2xl font-bold text-[#635BFF]">24</div>
+          <div className="text-xs text-[#8B9CB6]">Open Slots</div>
         </div>
         <div className="text-center">
-          <div className="text-2xl font-bold text-foreground">5</div>
-          <div className="text-xs text-muted-foreground">Active Gigs</div>
+          <div className="text-2xl font-bold text-[#F1FAEE]">5</div>
+          <div className="text-xs text-[#8B9CB6]">Active Gigs</div>
         </div>
         <div className="text-center">
-          <div className="text-2xl font-bold text-foreground">2</div>
-          <div className="text-xs text-muted-foreground">Urgent Needs</div>
+          <div className="text-2xl font-bold text-[#F1FAEE]">2</div>
+          <div className="text-xs text-[#8B9CB6]">Urgent Needs</div>
         </div>
       </motion.div>
     </div>
