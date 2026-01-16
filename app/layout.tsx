@@ -47,7 +47,7 @@ export default function RootLayout({
       <body
         className="font-sans antialiased min-h-screen bg-cover bg-center bg-fixed text-slate-50"
         style={{
-          backgroundImage: `url('https://i.postimg.cc/Z5h9Hm4j/junior-louis-jean-q-EF1Cx-K1Ht4-unsplash.jpg')`,
+          backgroundImage: `url('https://i.postimg.cc/Z5h9Hm4j/junior_louis_jean_q_EF1Cx_K1Ht4_unsplash.jpg')`,
         }}
       >
         {/* Dark semi-transparent overlay for readability */}
