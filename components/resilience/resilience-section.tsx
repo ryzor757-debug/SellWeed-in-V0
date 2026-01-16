@@ -9,10 +9,10 @@ import { Governance } from "./governance"
 
 export function ResilienceSection() {
   return (
-    <section id="resilience-detail" className="relative py-24 sm:py-32">
-      {/* Background effects */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_var(--bio-green-dim)_0%,_transparent_50%)] opacity-15" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_var(--teal-deep)_0%,_transparent_50%)] opacity-20" />
+    <section id="resilience-detail" className="relative py-16 sm:py-24 lg:py-32">
+      {/* Background effects - more transparent */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_var(--bio-green-dim)_0%,_transparent_50%)] opacity-10" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_var(--teal-deep)_0%,_transparent_50%)] opacity-10" />
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -21,16 +21,16 @@ export function ResilienceSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-8 sm:mb-12"
         >
-          <span className="inline-flex items-center gap-2 glass rounded-full px-4 py-1.5 text-sm font-medium text-bio-green mb-4">
-            <Shield className="h-4 w-4" />
+          <span className="inline-flex items-center gap-2 bg-slate-900/40 backdrop-blur-md border border-[#ffffff10] rounded-full px-3 py-1 sm:px-4 sm:py-1.5 text-xs sm:text-sm font-medium text-bio-green mb-3 sm:mb-4">
+            <Shield className="h-3 w-3 sm:h-4 sm:w-4" />
             Resilience Module
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4 text-balance">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-3 sm:mb-4 text-balance">
             Impact & Resilience
           </h2>
-          <p className="mx-auto max-w-2xl text-muted-foreground text-lg">
+          <p className="mx-auto max-w-2xl text-muted-foreground text-sm sm:text-base lg:text-lg px-2">
             Building capacity, measuring progress, and establishing governance for a sustainable blue economy that lasts
             generations.
           </p>
@@ -44,34 +44,34 @@ export function ResilienceSection() {
           transition={{ duration: 0.6, delay: 0.2 }}
         >
           <Tabs defaultValue="academy" className="w-full">
-            <TabsList className="w-full justify-start glass border-0 p-1 mb-6 overflow-x-auto">
+            <TabsList className="w-full justify-start bg-slate-900/40 backdrop-blur-md border border-[#ffffff10] p-1 mb-4 sm:mb-6 overflow-x-auto flex-nowrap">
               <TabsTrigger
                 value="academy"
-                className="data-[state=active]:bg-bio-green/20 data-[state=active]:text-bio-green gap-2"
+                className="data-[state=active]:bg-bio-green/20 data-[state=active]:text-bio-green gap-1.5 sm:gap-2 min-h-[44px] text-xs sm:text-sm whitespace-nowrap"
               >
-                <GraduationCap className="h-4 w-4" />
+                <GraduationCap className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                 <span className="hidden sm:inline">Academy</span>
                 <span className="sm:hidden">Learn</span>
               </TabsTrigger>
               <TabsTrigger
                 value="sdg-tracker"
-                className="data-[state=active]:bg-bio-green/20 data-[state=active]:text-bio-green gap-2"
+                className="data-[state=active]:bg-bio-green/20 data-[state=active]:text-bio-green gap-1.5 sm:gap-2 min-h-[44px] text-xs sm:text-sm whitespace-nowrap"
               >
-                <Target className="h-4 w-4" />
+                <Target className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                 <span className="hidden sm:inline">SDG Tracker</span>
                 <span className="sm:hidden">SDGs</span>
               </TabsTrigger>
               <TabsTrigger
                 value="governance"
-                className="data-[state=active]:bg-bio-green/20 data-[state=active]:text-bio-green gap-2"
+                className="data-[state=active]:bg-bio-green/20 data-[state=active]:text-bio-green gap-1.5 sm:gap-2 min-h-[44px] text-xs sm:text-sm whitespace-nowrap"
               >
-                <FileText className="h-4 w-4" />
+                <FileText className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                 <span className="hidden sm:inline">Governance</span>
                 <span className="sm:hidden">Docs</span>
               </TabsTrigger>
             </TabsList>
 
-            <div className="glass rounded-2xl p-4 sm:p-6 lg:p-8 min-h-[600px]">
+            <div className="bg-slate-900/40 backdrop-blur-md border border-[#ffffff10] rounded-2xl p-3 sm:p-4 lg:p-6 xl:p-8 min-h-[500px] sm:min-h-[600px]">
               <TabsContent value="academy" className="mt-0">
                 <Academy />
               </TabsContent>

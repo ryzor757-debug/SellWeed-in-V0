@@ -5,9 +5,6 @@
 
 /* Oceanic Midnight palette with tab-specific accent colors */
 :root {
-  /* Add background image URL as CSS variable */
-  --bg-image: url("https://i.postimg.cc/Z5h9Hm4j/junior_louis_jean_q_EF1Cx_K1Ht4_unsplash.jpg");
-
   /* Core Oceanic Midnight colors */
   --background: transparent;
   --foreground: #f1faee;
@@ -69,7 +66,7 @@
   --bio-green: #26de81;
   --bio-green-dim: #1a9d5c;
   --ocean-dark: #0b1120;
-  /* Updated glass to more transparent for glassmorphism with background image */
+  /* Glass for glassmorphism */
   --glass: rgba(15, 23, 42, 0.4);
   --glass-border: rgba(255, 255, 255, 0.063);
   --card-border: rgba(255, 255, 255, 0.063);
@@ -137,7 +134,7 @@
   }
 }
 
-/* Global background image applied to html element */
+/* Global background image applied to html element with fixed attachment */
 html {
   background-image: url("https://i.postimg.cc/Z5h9Hm4j/junior_louis_jean_q_EF1Cx_K1Ht4_unsplash.jpg");
   background-size: cover;
@@ -151,7 +148,12 @@ body {
   background: transparent;
 }
 
-/* Updated glassmorphism with backdrop-blur-md and more transparent bg */
+/* Safe area padding for mobile bottom nav */
+.safe-area-pb {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* Updated glassmorphism with backdrop-blur-md */
 .glass {
   background: rgba(15, 23, 42, 0.4);
   backdrop-filter: blur(12px);
@@ -166,7 +168,7 @@ body {
   border: 1px solid var(--card-border);
 }
 
-/* Glow effects updated for new palette */
+/* Glow effects */
 .glow-teal {
   box-shadow: 0 0 20px rgba(38, 222, 129, 0.3), 0 0 40px rgba(38, 222, 129, 0.1);
 }

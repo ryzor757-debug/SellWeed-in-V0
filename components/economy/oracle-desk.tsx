@@ -94,14 +94,12 @@ export function OracleDesk() {
     setUploading(true)
     setUploadProgress(0)
 
-    // Simulate upload progress
     const interval = setInterval(() => {
       setUploadProgress((prev) => {
         if (prev >= 100) {
           clearInterval(interval)
           setUploading(false)
 
-          // Add new submission
           const newSubmission: Submission = {
             id: Date.now().toString(),
             fileName: file.name,
@@ -140,15 +138,15 @@ export function OracleDesk() {
       case "verified":
         return {
           icon: CheckCircle2,
-          color: "text-accent",
-          bg: "bg-accent/20",
+          color: "text-[#26DE81]",
+          bg: "bg-[#26DE81]/20",
           label: "Verified & Paid",
         }
       case "rejected":
         return {
           icon: XCircle,
-          color: "text-destructive",
-          bg: "bg-destructive/20",
+          color: "text-[#FF6B6B]",
+          bg: "bg-[#FF6B6B]/20",
           label: "Rejected",
         }
       default:
@@ -162,16 +160,16 @@ export function OracleDesk() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
         <div>
-          <h3 className="text-xl font-semibold text-foreground">Oracle Desk</h3>
-          <p className="text-sm text-muted-foreground mt-1">Scientific verification portal for biomass auditing</p>
+          <h3 className="text-lg sm:text-xl font-semibold text-[#F1FAEE]">Oracle Desk</h3>
+          <p className="text-xs sm:text-sm text-[#8B9CB6] mt-1">Scientific verification portal for biomass auditing</p>
         </div>
 
         <div className="flex items-center gap-2">
-          <Badge className="bg-primary/20 text-primary border-primary/30 gap-1">
+          <Badge className="bg-[#26DE81]/20 text-[#26DE81] border-[#26DE81]/30 gap-1 text-[10px] sm:text-xs">
             <ShieldCheck className="h-3 w-3" />
             University Verifier Access
           </Badge>
@@ -182,8 +180,8 @@ export function OracleDesk() {
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
-        className={`relative glass rounded-xl p-8 border-2 border-dashed transition-all ${
-          dragActive ? "border-primary bg-primary/10" : "border-border/50 hover:border-primary/50"
+        className={`relative bg-slate-900/40 backdrop-blur-md rounded-xl p-4 sm:p-6 lg:p-8 border-2 border-dashed transition-all ${
+          dragActive ? "border-[#26DE81] bg-[#26DE81]/10" : "border-[#ffffff10] hover:border-[#26DE81]/50"
         }`}
         onDragEnter={handleDrag}
         onDragLeave={handleDrag}
@@ -199,24 +197,24 @@ export function OracleDesk() {
         />
 
         <div className="flex flex-col items-center text-center">
-          <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary/20 mb-4">
-            <Upload className={`h-8 w-8 text-primary ${dragActive ? "animate-bounce" : ""}`} />
+          <div className="flex h-12 w-12 sm:h-16 sm:w-16 items-center justify-center rounded-full bg-[#26DE81]/20 mb-3 sm:mb-4">
+            <Upload className={`h-6 w-6 sm:h-8 sm:w-8 text-[#26DE81] ${dragActive ? "animate-bounce" : ""}`} />
           </div>
 
-          <h4 className="font-semibold text-foreground mb-1">Upload Biomass Photo</h4>
-          <p className="text-sm text-muted-foreground mb-4">
+          <h4 className="font-semibold text-sm sm:text-base text-[#F1FAEE] mb-1">Upload Biomass Photo</h4>
+          <p className="text-xs sm:text-sm text-[#8B9CB6] mb-3 sm:mb-4">
             Drag and drop or click to select a photo for verification
           </p>
 
           {uploading ? (
             <div className="w-full max-w-xs">
               <Progress value={uploadProgress} className="h-2 mb-2" />
-              <p className="text-xs text-muted-foreground">Uploading... {uploadProgress}%</p>
+              <p className="text-xs text-[#8B9CB6]">Uploading... {uploadProgress}%</p>
             </div>
           ) : (
             <Button
               onClick={() => fileInputRef.current?.click()}
-              className="bg-primary/20 hover:bg-primary/30 text-primary border border-primary/30"
+              className="bg-[#26DE81]/20 hover:bg-[#26DE81]/30 text-[#26DE81] border border-[#26DE81]/30 min-h-[44px]"
             >
               <FileImage className="h-4 w-4 mr-2" />
               Select Photo
@@ -226,41 +224,41 @@ export function OracleDesk() {
       </motion.div>
 
       {/* Verification Guide */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <div className="glass rounded-xl p-4 flex items-start gap-3">
-          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary/20">
-            <FileImage className="h-4 w-4 text-primary" />
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+        <div className="bg-slate-900/40 backdrop-blur-md border border-[#ffffff10] rounded-xl p-3 sm:p-4 flex items-start gap-3">
+          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#26DE81]/20">
+            <FileImage className="h-4 w-4 text-[#26DE81]" />
           </div>
           <div>
-            <div className="font-medium text-foreground text-sm">Clear Photo</div>
-            <div className="text-xs text-muted-foreground">Include scale reference and batch ID</div>
+            <div className="font-medium text-[#F1FAEE] text-xs sm:text-sm">Clear Photo</div>
+            <div className="text-[10px] sm:text-xs text-[#8B9CB6]">Include scale reference and batch ID</div>
           </div>
         </div>
-        <div className="glass rounded-xl p-4 flex items-start gap-3">
-          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-accent/20">
-            <ShieldCheck className="h-4 w-4 text-accent" />
+        <div className="bg-slate-900/40 backdrop-blur-md border border-[#ffffff10] rounded-xl p-3 sm:p-4 flex items-start gap-3">
+          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#635BFF]/20">
+            <ShieldCheck className="h-4 w-4 text-[#635BFF]" />
           </div>
           <div>
-            <div className="font-medium text-foreground text-sm">AI + Expert Review</div>
-            <div className="text-xs text-muted-foreground">Dual verification process</div>
+            <div className="font-medium text-[#F1FAEE] text-xs sm:text-sm">AI + Expert Review</div>
+            <div className="text-[10px] sm:text-xs text-[#8B9CB6]">Dual verification process</div>
           </div>
         </div>
-        <div className="glass rounded-xl p-4 flex items-start gap-3">
-          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary/20">
-            <Wallet className="h-4 w-4 text-primary" />
+        <div className="bg-slate-900/40 backdrop-blur-md border border-[#ffffff10] rounded-xl p-3 sm:p-4 flex items-start gap-3">
+          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#26DE81]/20">
+            <Wallet className="h-4 w-4 text-[#26DE81]" />
           </div>
           <div>
-            <div className="font-medium text-foreground text-sm">Auto Payout</div>
-            <div className="text-xs text-muted-foreground">Smart contract triggers on verify</div>
+            <div className="font-medium text-[#F1FAEE] text-xs sm:text-sm">Auto Payout</div>
+            <div className="text-[10px] sm:text-xs text-[#8B9CB6]">Smart contract triggers on verify</div>
           </div>
         </div>
       </div>
 
       {/* Submissions List */}
       <div className="space-y-3">
-        <h4 className="font-semibold text-foreground flex items-center gap-2">
+        <h4 className="font-semibold text-sm sm:text-base text-[#F1FAEE] flex items-center gap-2">
           Recent Submissions
-          <Badge variant="secondary" className="text-xs">
+          <Badge variant="secondary" className="text-[10px] sm:text-xs">
             {submissions.length}
           </Badge>
         </h4>
@@ -277,88 +275,97 @@ export function OracleDesk() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, x: -20 }}
                 transition={{ delay: index * 0.05 }}
-                className="glass rounded-xl p-4"
+                className="bg-slate-900/40 backdrop-blur-md border border-[#ffffff10] rounded-xl p-3 sm:p-4"
               >
-                <div className="flex flex-col lg:flex-row lg:items-center gap-4">
+                <div className="flex flex-col gap-3 sm:gap-4">
                   {/* File Info */}
                   <div className="flex items-center gap-3 flex-1 min-w-0">
                     <div
-                      className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg ${statusConfig.bg}`}
+                      className={`flex h-8 w-8 sm:h-10 sm:w-10 shrink-0 items-center justify-center rounded-lg ${statusConfig.bg}`}
                     >
-                      <FileImage className={`h-5 w-5 ${statusConfig.color}`} />
+                      <FileImage className={`h-4 w-4 sm:h-5 sm:w-5 ${statusConfig.color}`} />
                     </div>
-                    <div className="min-w-0">
-                      <div className="font-medium text-foreground truncate">{submission.fileName}</div>
-                      <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                    <div className="min-w-0 flex-1">
+                      <div className="font-medium text-xs sm:text-sm text-[#F1FAEE] truncate">
+                        {submission.fileName}
+                      </div>
+                      <div className="flex items-center gap-2 text-[10px] sm:text-xs text-[#8B9CB6]">
                         <span>{submission.fileSize}</span>
                         <span>•</span>
                         <span>{submission.timestamp}</span>
                       </div>
                     </div>
-                  </div>
-
-                  {/* Status */}
-                  <div className="flex items-center gap-2">
-                    <Badge className={`${statusConfig.bg} ${statusConfig.color} border-0 gap-1`}>
+                    {/* Status badge - shown inline on mobile */}
+                    <Badge
+                      className={`${statusConfig.bg} ${statusConfig.color} border-0 gap-1 text-[10px] sm:text-xs shrink-0`}
+                    >
                       <StatusIcon className="h-3 w-3" />
-                      {statusConfig.label}
+                      <span className="hidden sm:inline">{statusConfig.label}</span>
                     </Badge>
                   </div>
 
-                  {/* Biomass & Value */}
-                  {submission.biomassKg && (
-                    <div className="flex items-center gap-4 text-sm">
-                      <div>
-                        <div className="text-muted-foreground text-xs">Biomass</div>
-                        <div className="font-semibold text-foreground">{submission.biomassKg} kg</div>
-                      </div>
-                      {submission.creditValue && (
+                  {/* Biomass, Value & Actions row */}
+                  <div className="flex items-center justify-between gap-3 pt-2 border-t border-[#ffffff10]">
+                    {/* Biomass & Value */}
+                    {submission.biomassKg && (
+                      <div className="flex items-center gap-4 text-xs sm:text-sm">
                         <div>
-                          <div className="text-muted-foreground text-xs">Credit Value</div>
-                          <div className="font-semibold text-accent">${submission.creditValue.toFixed(2)}</div>
+                          <div className="text-[10px] sm:text-xs text-[#8B9CB6]">Biomass</div>
+                          <div className="font-semibold text-[#F1FAEE]">{submission.biomassKg} kg</div>
                         </div>
+                        {submission.creditValue && (
+                          <div>
+                            <div className="text-[10px] sm:text-xs text-[#8B9CB6]">Value</div>
+                            <div className="font-semibold text-[#26DE81]">${submission.creditValue.toFixed(2)}</div>
+                          </div>
+                        )}
+                      </div>
+                    )}
+
+                    {/* Actions */}
+                    <div className="flex items-center gap-2">
+                      {submission.status === "pending" && (
+                        <Button
+                          size="sm"
+                          onClick={() => handleTriggerPayout(submission.id)}
+                          className="bg-[#26DE81] hover:bg-[#26DE81]/90 text-[#0B1120] border-0 gap-1 min-h-[44px] text-xs sm:text-sm"
+                        >
+                          <Send className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
+                          <span className="hidden sm:inline">Verify & Pay</span>
+                          <span className="sm:hidden">Verify</span>
+                        </Button>
+                      )}
+                      {submission.status === "verified" && submission.txHash && (
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          className="border-[#26DE81]/30 text-[#26DE81] gap-1 bg-transparent min-h-[44px] text-xs sm:text-sm"
+                        >
+                          <Eye className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
+                          View TX
+                        </Button>
+                      )}
+                      {submission.status === "rejected" && (
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          className="border-[#FF6B6B]/30 text-[#FF6B6B] gap-1 bg-transparent min-h-[44px] text-xs sm:text-sm"
+                        >
+                          <AlertTriangle className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
+                          Details
+                        </Button>
                       )}
                     </div>
-                  )}
-
-                  {/* Actions */}
-                  <div className="flex items-center gap-2">
-                    {submission.status === "pending" && (
-                      <Button
-                        size="sm"
-                        onClick={() => handleTriggerPayout(submission.id)}
-                        className="bg-primary/20 hover:bg-primary/30 text-primary border border-primary/30 gap-1"
-                      >
-                        <Send className="h-3 w-3" />
-                        Verify & Pay
-                      </Button>
-                    )}
-                    {submission.status === "verified" && submission.txHash && (
-                      <Button size="sm" variant="outline" className="border-accent/30 text-accent gap-1 bg-transparent">
-                        <Eye className="h-3 w-3" />
-                        View TX
-                      </Button>
-                    )}
-                    {submission.status === "rejected" && (
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        className="border-destructive/30 text-destructive gap-1 bg-transparent"
-                      >
-                        <AlertTriangle className="h-3 w-3" />
-                        Details
-                      </Button>
-                    )}
                   </div>
                 </div>
 
                 {/* Verifier Info */}
                 {submission.verifier && (
-                  <div className="mt-3 pt-3 border-t border-border/30 text-xs text-muted-foreground">
-                    Verified by: <span className="text-foreground">{submission.verifier}</span>
+                  <div className="mt-3 pt-3 border-t border-[#ffffff10] text-[10px] sm:text-xs text-[#8B9CB6]">
+                    Verified by: <span className="text-[#F1FAEE]">{submission.verifier}</span>
                     {submission.txHash && (
-                      <span className="ml-4">
-                        TX: <code className="text-primary">{submission.txHash}</code>
+                      <span className="block sm:inline sm:ml-4">
+                        TX: <code className="text-[#26DE81]">{submission.txHash}</code>
                       </span>
                     )}
                   </div>
@@ -374,23 +381,23 @@ export function OracleDesk() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.3 }}
-        className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 border-t border-border/30"
+        className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 pt-4 border-t border-[#ffffff10]"
       >
         <div className="text-center">
-          <div className="text-2xl font-bold text-primary">$12.4K</div>
-          <div className="text-xs text-muted-foreground">Total Paid Out</div>
+          <div className="text-lg sm:text-2xl font-bold text-[#26DE81]">$12.4K</div>
+          <div className="text-[10px] sm:text-xs text-[#8B9CB6]">Total Paid Out</div>
         </div>
         <div className="text-center">
-          <div className="text-2xl font-bold text-accent">847</div>
-          <div className="text-xs text-muted-foreground">Verified Batches</div>
+          <div className="text-lg sm:text-2xl font-bold text-[#635BFF]">847</div>
+          <div className="text-[10px] sm:text-xs text-[#8B9CB6]">Verified Batches</div>
         </div>
         <div className="text-center">
-          <div className="text-2xl font-bold text-foreground">12</div>
-          <div className="text-xs text-muted-foreground">Active Verifiers</div>
+          <div className="text-lg sm:text-2xl font-bold text-[#F1FAEE]">12</div>
+          <div className="text-[10px] sm:text-xs text-[#8B9CB6]">Active Verifiers</div>
         </div>
         <div className="text-center">
-          <div className="text-2xl font-bold text-foreground">98.2%</div>
-          <div className="text-xs text-muted-foreground">Approval Rate</div>
+          <div className="text-lg sm:text-2xl font-bold text-[#F1FAEE]">98.2%</div>
+          <div className="text-[10px] sm:text-xs text-[#8B9CB6]">Approval Rate</div>
         </div>
       </motion.div>
     </div>
